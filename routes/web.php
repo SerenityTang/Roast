@@ -13,6 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('welcome');
+});*/
+
+Route::group(['namespace' => 'Web'], function () {
+    Route::group(['middleware' => ['auth']], function () {
+        Route::get('/', 'AppController@getApp');
+    });
 });
