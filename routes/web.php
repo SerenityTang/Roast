@@ -21,4 +21,15 @@ Route::group(['namespace' => 'Web'], function () {
     Route::group(['middleware' => ['auth']], function () {
         Route::get('/', 'AppController@getApp');
     });
+
+    Route::group(['middleware' => ['guest']], function () {
+        Route::get('/login', 'AppController@getLogin');
+    });
+
+    Route::group(['namespace' => 'Auth'], function () {
+        Route::group(['middleware' => ['guest']], function () {
+            Route::get('/auth/{social}', 'AuthenticationController@getSocialRedirect');
+            Route::get('/auth/{social}/callback', 'AuthenticationController@getSocialCallback');
+        });
+    });
 });
