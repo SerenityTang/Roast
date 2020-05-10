@@ -23,7 +23,7 @@ Route::group(['namespace' => 'Web'], function () {
     });
 
     Route::group(['middleware' => ['guest']], function () {
-        Route::get('/login', 'AppController@getLogin');
+        Route::get('/login', 'AppController@getLogin')->name('login');
     });
 
     Route::group(['namespace' => 'Auth'], function () {
