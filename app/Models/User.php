@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
-class User extends Model
+class User extends Authenticatable
 {
+    use Notifiable;
+
     protected $table = 'users';
 
     protected $fillable = [
@@ -15,5 +18,9 @@ class User extends Model
         'avatar',       //头像
         'password',     //密码
         'status'        //状态：1 正常，2 禁用
+    ];
+
+    protected $hidden = [
+        'password', 'remember_token',
     ];
 }
