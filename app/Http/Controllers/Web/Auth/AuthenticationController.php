@@ -48,6 +48,13 @@ class AuthenticationController extends Controller
                     return redirect('/');
                 }
             }
+        } else {
+            $user = User::find($userSocialite->user_id);
+            // 手动登录该用户
+            Auth::login($user);
+
+            // 登录成功后将用户重定向到首页
+            return redirect('/');
         }
     }
 }
